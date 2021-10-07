@@ -1,28 +1,28 @@
 export class Negotiation {
-  #date;
-  #quantity; //  these are private attributes
-  #value;
+  private _date;
+  private _quantity;
+  private _value;
 
   constructor(date, quantity, value) {
-    this.#date = date;
-    this.#quantity = quantity;
-    this.#value = value;
+    this._date = date;
+    this._quantity = quantity;
+    this._value = value;
   }
 
   // get methods
   get date() {
-    return this.#date;
+    return this._date;
   }
 
   get quantity() {
-    return this.#quantity;
+    return this._quantity;
   }
 
   get value() {
-    return this.#value;
+    return this._value;
   }
 
   get amount() {
-    return this.#quantity * this.#value;
+    return this._quantity * this._value;
   }
 }
