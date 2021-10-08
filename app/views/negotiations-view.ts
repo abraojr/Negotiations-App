@@ -22,7 +22,9 @@ export class NegotiationsView {
                 .map((negotiation) => {
                   return `
                   <tr>
-                    <td>?</td>
+                    <td>${new Intl.DateTimeFormat().format(
+                      negotiation.date
+                    )}</td>
                     <td>${negotiation.quantity}</td>
                     <td>${negotiation.value}</td>
                   </tr>
