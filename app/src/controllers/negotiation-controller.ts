@@ -3,6 +3,7 @@ import { MessageView } from "../views/message-view.js";
 import { NegotiationsView } from "../views/negotiations-view.js";
 import { Negotiations } from "../models/negotiations.js";
 import { Negotiation } from "../models/negotiation.js";
+import { loginRuntime } from '../decorators/login-runtime.js';
 
 export class NegotiationController {
   private inputeDate: HTMLInputElement;
@@ -19,8 +20,8 @@ export class NegotiationController {
     this.negotiationsView.update(this.negotiations);
   }
 
+  @loginRuntime()
   public add(): void {
-    const t1 = performance.now();
     const negotiation = Negotiation.createFrom(
       this.inputeDate.value,
       this.inputQuantity.value,
@@ -33,8 +34,6 @@ export class NegotiationController {
     this.negotiations.add(negotiation);
     this.clearForm();
     this.updateView();
-    const t2 = performance.now();
-    console.log(`Runtime of the add method: ${(t2 - t1) / 1000} seconds.`)
   }
 
   private isWorkingDay(date: Date) {
