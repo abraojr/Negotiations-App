@@ -18,15 +18,14 @@ export class NegotiationController {
     this.negotiationsView.update(this.negotiations);
   }
 
-  add(): void {
+  public add(): void {
     const negotiation = this.createNegotiation();
     this.negotiations.add(negotiation);
-    this.negotiationsView.update(this.negotiations);
-    this.messageView.update("Negotiation added successfully");
     this.clearForm();
+    this.updateView();
   }
 
-  createNegotiation(): Negotiation {
+  private createNegotiation(): Negotiation {
     const regExp = /-/g;
     const date = new Date(this.inputeDate.value.replace(regExp, ","));
     const quantity = parseInt(this.inputQuantity.value);
@@ -34,10 +33,15 @@ export class NegotiationController {
     return new Negotiation(date, quantity, value);
   }
 
-  clearForm(): void {
+  private clearForm(): void {
     this.inputeDate.value = "";
     this.inputQuantity.value = "";
     this.inputValue.value = "";
     this.inputeDate.focus();
+  }
+
+  private updateView(): void {
+    this.negotiationsView.update(this.negotiations);
+    this.messageView.update("Negotiation added successfully");
   }
 }
