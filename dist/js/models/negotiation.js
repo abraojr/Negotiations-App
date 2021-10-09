@@ -4,7 +4,6 @@ export class Negotiation {
         this.quantity = quantity;
         this.value = value;
     }
-    // get methods
     get date() {
         const date = new Date(this._date.getTime());
         return date;
