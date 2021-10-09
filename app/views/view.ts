@@ -3,7 +3,12 @@ export abstract class View<T> {
   private _escape: boolean = false;
 
   constructor(selector: string, escape?: boolean) {
-    this.element = document.querySelector(selector);
+    const element = document.querySelector(selector);
+    if (element) {
+      this.element = element as HTMLElement;
+    } else {
+      throw Error(`Selector ${selector} does not exist in the DOM. Check with the development team!`)
+    }
     if (escape) {
       this._escape = escape;
     }

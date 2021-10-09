@@ -13,9 +13,9 @@ export class NegotiationController {
   private messageView = new MessageView("#messageView");
 
   constructor() {
-    this.inputeDate = document.querySelector("#date");
-    this.inputQuantity = document.querySelector("#quantity");
-    this.inputValue = document.querySelector("#value");
+    this.inputeDate = <HTMLInputElement>document.querySelector("#date");
+    this.inputQuantity = document.querySelector("#quantity") as HTMLInputElement;
+    this.inputValue = document.querySelector("#value") as HTMLInputElement;
     this.negotiationsView.update(this.negotiations);
   }
 
@@ -26,7 +26,7 @@ export class NegotiationController {
       this.inputValue.value
     );
     if (!this.isWorkingDay(negotiation.date)) {
-      this.messageView.update("Only negotiations made in working days are accepted");
+      this.messageView.update("Only negotiations made in working days are accepted!");
       return;
     }
     this.negotiations.add(negotiation);
@@ -47,6 +47,6 @@ export class NegotiationController {
 
   private updateView(): void {
     this.negotiationsView.update(this.negotiations);
-    this.messageView.update("Negotiation added successfully");
+    this.messageView.update("Negotiation added successfully!");
   }
 }

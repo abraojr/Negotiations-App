@@ -16,7 +16,7 @@ export class NegotiationController {
     add() {
         const negotiation = Negotiation.createFrom(this.inputeDate.value, this.inputQuantity.value, this.inputValue.value);
         if (!this.isWorkingDay(negotiation.date)) {
-            this.messageView.update("Only negotiations made in working days are accepted");
+            this.messageView.update("Only negotiations made in working days are accepted!");
             return;
         }
         this.negotiations.add(negotiation);
@@ -34,6 +34,6 @@ export class NegotiationController {
     }
     updateView() {
         this.negotiationsView.update(this.negotiations);
-        this.messageView.update("Negotiation added successfully");
+        this.messageView.update("Negotiation added successfully!");
     }
 }
