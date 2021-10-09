@@ -15,11 +15,14 @@ export abstract class View<T> {
   }
 
   public update(model: T): void {
+    const t1 = performance.now();
     let template = this.template(model);
     if (this._escape) {
       template = template.replace(/<script>[\s\S]*?<\/script>/, "");
     }
     this.element.innerHTML = template;
+    const t2 = performance.now();
+    console.log(`Runtime of the update method: ${(t2 - t1) / 1000} seconds.`)
   }
 
   protected abstract template(model: T): string;

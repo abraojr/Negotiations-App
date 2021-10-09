@@ -14,6 +14,7 @@ export class NegotiationController {
         this.negotiationsView.update(this.negotiations);
     }
     add() {
+        const t1 = performance.now();
         const negotiation = Negotiation.createFrom(this.inputeDate.value, this.inputQuantity.value, this.inputValue.value);
         if (!this.isWorkingDay(negotiation.date)) {
             this.messageView.update("Only negotiations made in working days are accepted!");
@@ -22,6 +23,8 @@ export class NegotiationController {
         this.negotiations.add(negotiation);
         this.clearForm();
         this.updateView();
+        const t2 = performance.now();
+        console.log(`Runtime of the add method: ${(t2 - t1) / 1000} seconds.`);
     }
     isWorkingDay(date) {
         return date.getDay() > DaysOfWeek.SUNDAY && date.getDay() < DaysOfWeek.SATURDAY;
