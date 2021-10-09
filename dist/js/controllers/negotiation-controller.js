@@ -14,9 +14,14 @@ export class NegotiationController {
     }
     add() {
         const negotiation = this.createNegotiation();
-        this.negotiations.add(negotiation);
-        this.clearForm();
-        this.updateView();
+        if (negotiation.date.getDay() > 0 && negotiation.date.getDay() < 6) {
+            this.negotiations.add(negotiation);
+            this.clearForm();
+            this.updateView();
+        }
+        else {
+            this.messageView.update("Only negotiations made in working days are accepted");
+        }
     }
     createNegotiation() {
         const regExp = /-/g;
