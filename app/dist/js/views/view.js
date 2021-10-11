@@ -28,5 +28,5 @@ export class View {
     }
 }
 __decorate([
-    loginRuntime()
+    loginRuntime(true)
 ], View.prototype, "update", null);
