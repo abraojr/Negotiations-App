@@ -43,6 +43,22 @@ export class NegotiationController {
     this.updateView();
   }
 
+  public importData(): void {
+    fetch("http://localhost:8080/data")
+      .then(res => res.json())
+      .then((data: any[]) => {
+        return data.map(eachData => {
+          return new Negotiation(new Date(), eachData.times, eachData.amount)
+        })
+      })
+      .then(eachNegotiation => {
+        for (let negotiation of eachNegotiation) {
+          this.negotiations.add(negotiation);
+        }
+        this.negotiationsView.update(this.negotiations);
+      });
+  }
+
   private isWorkingDay(date: Date) {
     return date.getDay() > DaysOfWeek.SUNDAY && date.getDay() < DaysOfWeek.SATURDAY
   }
