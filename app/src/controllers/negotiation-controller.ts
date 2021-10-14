@@ -6,6 +6,7 @@ import { Negotiation } from "../models/negotiation.js";
 import { loginRuntime } from '../decorators/login-runtime.js';
 import { inspect } from '../decorators/inspect.js';
 import { domInjector } from '../decorators/dom-injector.js';
+import { INegotiation } from '../interfaces/INegotiation.js';
 
 export class NegotiationController {
 
@@ -46,7 +47,7 @@ export class NegotiationController {
   public importData(): void {
     fetch("http://localhost:8080/data")
       .then(res => res.json())
-      .then((data: any[]) => {
+      .then((data: INegotiation[]) => {
         return data.map(eachData => {
           return new Negotiation(new Date(), eachData.times, eachData.amount)
         })
