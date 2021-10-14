@@ -6,7 +6,7 @@ import { Negotiation } from "../models/negotiation.js";
 import { loginRuntime } from '../decorators/login-runtime.js';
 import { inspect } from '../decorators/inspect.js';
 import { domInjector } from '../decorators/dom-injector.js';
-import { INegotiation } from '../interfaces/INegotiation.js';
+import { NegotiationsService } from '../services/negotiations-service.js';
 
 export class NegotiationController {
 
@@ -22,6 +22,7 @@ export class NegotiationController {
   private negotiations = new Negotiations();
   private negotiationsView = new NegotiationsView("#negotiationsView");
   private messageView = new MessageView("#messageView");
+  private negotiationsService = new NegotiationsService();
 
   constructor() {
     this.negotiationsView.update(this.negotiations);
@@ -45,13 +46,8 @@ export class NegotiationController {
   }
 
   public importData(): void {
-    fetch("http://localhost:8080/data")
-      .then(res => res.json())
-      .then((data: INegotiation[]) => {
-        return data.map(eachData => {
-          return new Negotiation(new Date(), eachData.times, eachData.amount)
-        })
-      })
+    this.negotiationsService
+      .getNegotiations()
       .then(eachNegotiation => {
         for (let negotiation of eachNegotiation) {
           this.negotiations.add(negotiation);

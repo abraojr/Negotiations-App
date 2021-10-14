@@ -12,11 +12,13 @@ import { Negotiation } from "../models/negotiation.js";
 import { loginRuntime } from '../decorators/login-runtime.js';
 import { inspect } from '../decorators/inspect.js';
 import { domInjector } from '../decorators/dom-injector.js';
+import { NegotiationsService } from '../services/negotiations-service.js';
 export class NegotiationController {
     constructor() {
         this.negotiations = new Negotiations();
         this.negotiationsView = new NegotiationsView("#negotiationsView");
         this.messageView = new MessageView("#messageView");
+        this.negotiationsService = new NegotiationsService();
         this.negotiationsView.update(this.negotiations);
     }
     add() {
@@ -30,13 +32,8 @@ export class NegotiationController {
         this.updateView();
     }
     importData() {
-        fetch("http://localhost:8080/data")
-            .then(res => res.json())
-            .then((data) => {
-            return data.map(eachData => {
-                return new Negotiation(new Date(), eachData.times, eachData.amount);
-            });
-        })
+        this.negotiationsService
+            .getNegotiations()
             .then(eachNegotiation => {
             for (let negotiation of eachNegotiation) {
                 this.negotiations.add(negotiation);
