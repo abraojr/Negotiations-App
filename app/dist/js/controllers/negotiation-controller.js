@@ -10,14 +10,13 @@ import { NegotiationsView } from "../views/negotiations-view.js";
 import { Negotiations } from "../models/negotiations.js";
 import { Negotiation } from "../models/negotiation.js";
 import { loginRuntime } from '../decorators/login-runtime.js';
+import { inspect } from '../decorators/inspect.js';
+import { domInjector } from '../decorators/dom-injector.js';
 export class NegotiationController {
     constructor() {
         this.negotiations = new Negotiations();
         this.negotiationsView = new NegotiationsView("#negotiationsView");
         this.messageView = new MessageView("#messageView");
-        this.inputeDate = document.querySelector("#date");
-        this.inputQuantity = document.querySelector("#quantity");
-        this.inputValue = document.querySelector("#value");
         this.negotiationsView.update(this.negotiations);
     }
     add() {
@@ -45,5 +44,15 @@ export class NegotiationController {
     }
 }
 __decorate([
+    domInjector("#date")
+], NegotiationController.prototype, "inputeDate", void 0);
+__decorate([
+    domInjector("#quantity")
+], NegotiationController.prototype, "inputQuantity", void 0);
+__decorate([
+    domInjector("#value")
+], NegotiationController.prototype, "inputValue", void 0);
+__decorate([
+    inspect(),
     loginRuntime()
 ], NegotiationController.prototype, "add", null);
