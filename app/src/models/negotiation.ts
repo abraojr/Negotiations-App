@@ -1,7 +1,6 @@
-import { IComparable } from '../interfaces/IComparable.js';
-import { IPrintable } from "../interfaces/IPrintable.js";
+import { IModel } from './../interfaces/IModel.js';
 
-export class Negotiation implements IPrintable, IComparable<Negotiation> {
+export class Negotiation implements IModel<Negotiation> {
   constructor(
     private _date: Date,
     public readonly quantity: number,
