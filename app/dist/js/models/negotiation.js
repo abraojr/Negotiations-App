@@ -31,3 +31,4 @@ export class Negotiation {
             && this.date.getFullYear() === obj.date.getFullYear();
     }
 }
+//# sourceMappingURL=negotiation.js.map

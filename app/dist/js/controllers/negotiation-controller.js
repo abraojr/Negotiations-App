@@ -75,3 +75,4 @@ __decorate([
     inspect(),
     loginRuntime()
 ], NegotiationController.prototype, "add", null);
+//# sourceMappingURL=negotiation-controller.js.map
