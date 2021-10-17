@@ -13,6 +13,7 @@ import { loginRuntime } from '../decorators/login-runtime.js';
 import { inspect } from '../decorators/inspect.js';
 import { domInjector } from '../decorators/dom-injector.js';
 import { NegotiationsService } from '../services/negotiations-service.js';
+import { print } from '../utils/print.js';
 export class NegotiationController {
     constructor() {
         this.negotiations = new Negotiations();
@@ -28,8 +29,7 @@ export class NegotiationController {
             return;
         }
         this.negotiations.add(negotiation);
-        console.log(negotiation.convertToText());
-        console.log(this.negotiations.convertToText());
+        print(negotiation, this.negotiations);
         this.clearForm();
         this.updateView();
     }

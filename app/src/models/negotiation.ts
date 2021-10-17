@@ -1,9 +1,13 @@
-export class Negotiation {
+import { Printable } from "../utils/printable.js";
+
+export class Negotiation extends Printable {
   constructor(
     private _date: Date,
     public readonly quantity: number,
     public readonly value: number
-  ) { }
+  ) {
+    super();
+  }
 
   public static createFrom(dateStr: string, quantityStr: string, valueStr: string): Negotiation {
     const regExp = /-/g;
