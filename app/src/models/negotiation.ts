@@ -1,13 +1,11 @@
-import { Printable } from "../utils/printable.js";
+import { IPrintable } from "../interfaces/IPrintable.js";
 
-export class Negotiation extends Printable {
+export class Negotiation implements IPrintable {
   constructor(
     private _date: Date,
     public readonly quantity: number,
     public readonly value: number
-  ) {
-    super();
-  }
+  ) { }
 
   public static createFrom(dateStr: string, quantityStr: string, valueStr: string): Negotiation {
     const regExp = /-/g;
