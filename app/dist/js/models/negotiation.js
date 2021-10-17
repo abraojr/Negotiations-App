@@ -25,9 +25,9 @@ export class Negotiation {
         Value: ${this.value}
     `;
     }
-    isEqual(negotiation) {
-        return this.date.getDate() === negotiation.date.getDate()
-            && this.date.getMonth() === negotiation.date.getMonth()
-            && this.date.getFullYear() === negotiation.date.getFullYear();
+    isEqual(obj) {
+        return this.date.getDate() === obj.date.getDate()
+            && this.date.getMonth() === obj.date.getMonth()
+            && this.date.getFullYear() === obj.date.getFullYear();
     }
 }

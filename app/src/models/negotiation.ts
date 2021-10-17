@@ -1,6 +1,7 @@
+import { IComparable } from '../interfaces/IComparable.js';
 import { IPrintable } from "../interfaces/IPrintable.js";
 
-export class Negotiation implements IPrintable {
+export class Negotiation implements IPrintable, IComparable<Negotiation> {
   constructor(
     private _date: Date,
     public readonly quantity: number,
@@ -32,9 +33,9 @@ export class Negotiation implements IPrintable {
     `
   }
 
-  public isEqual(negotiation: Negotiation): boolean {
-    return this.date.getDate() === negotiation.date.getDate()
-      && this.date.getMonth() === negotiation.date.getMonth()
-      && this.date.getFullYear() === negotiation.date.getFullYear();
+  public isEqual(obj: Negotiation): boolean {
+    return this.date.getDate() === obj.date.getDate()
+      && this.date.getMonth() === obj.date.getMonth()
+      && this.date.getFullYear() === obj.date.getFullYear();
   }
 }
