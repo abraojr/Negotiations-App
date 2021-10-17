@@ -41,6 +41,8 @@ export class NegotiationController {
       return;
     }
     this.negotiations.add(negotiation);
+    console.log(negotiation.convertToText());
+    console.log(this.negotiations.convertToText());
     this.clearForm();
     this.updateView();
   }

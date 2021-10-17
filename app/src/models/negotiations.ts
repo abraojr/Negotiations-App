@@ -10,4 +10,8 @@ export class Negotiations {
   public list(): readonly Negotiation[] {
     return this.negotiations;
   }
+
+  public convertToText(): string {
+    return JSON.stringify(this.negotiations, null, 2);
+  }
 }
